@@ -66,3 +66,8 @@ iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 \copy import from 'athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
 
 
+### Colonne de la table import 
+
+n1 = INT 
+n2 = TEXT -> CHAR(108) : SELECT MAX(LENGTH(n2)) FROM import;
+n3 = TEXT -> CHAR(1) : SELECT MAX(LENGTH(n3)) FROM import
