@@ -57,10 +57,12 @@ Ce fichier est encodé en **us-ascii**.
 
 ## Comment envisagez-vous l'import de ces données ?
 
+- Convertir de fichier en utf-8
 ```
 iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 ```
 
-\copy import from 'athlete_events_utf8.csv' with (FORMAT csv, HEADER, ENCODING 'UTF-8')
+- Importer les données
+\copy import from 'athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
 
 
