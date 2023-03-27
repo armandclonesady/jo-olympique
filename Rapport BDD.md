@@ -83,3 +83,7 @@ n12 = TEXT -> CHAR(22) : SELECT MAX(LENGTH(n12)) FROM import;
 n13 = TEXT -> CHAR(25) : SELECT MAX(LENGTH(n13)) FROM import;
 n14 = TEXT -> CHAR(85) : SELECT MAX(LENGTH(n14)) FROM import;
 n15 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n15)) FROM import;
+
+
+
+## 
