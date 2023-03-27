@@ -70,4 +70,16 @@ iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 
 n1 = INT 
 n2 = TEXT -> CHAR(108) : SELECT MAX(LENGTH(n2)) FROM import;
-n3 = TEXT -> CHAR(1) : SELECT MAX(LENGTH(n3)) FROM import
+n3 = TEXT -> CHAR(1) : SELECT MAX(LENGTH(n3)) FROM import;
+n4 = INT
+n5 = INT
+n6 = FLOAT
+n7 = TEXT -> CHAR(47) : SELECT MAX(LENGTH(n7)) FROM import;
+n8 = TEXT -> CHAR(3) : SELECT MAX(LENGTH(n8)) FROM import;
+n9 = TEXT -> CHAR(11) : SELECT MAX(LENGTH(n9)) FROM import;
+n10 = INT
+n11 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n11)) FROM import; 
+n12 = TEXT -> CHAR(22) : SELECT MAX(LENGTH(n12)) FROM import;
+n13 = TEXT -> CHAR(25) : SELECT MAX(LENGTH(n13)) FROM import;
+n14 = TEXT -> CHAR(85) : SELECT MAX(LENGTH(n14)) FROM import;
+n15 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n15)) FROM import;
