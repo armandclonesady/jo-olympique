@@ -20,7 +20,7 @@ ALTER TABLE import ALTER n13 TYPE CHAR(25);
 ALTER TABLE import ALTER n14 TYPE CHAR(85);
 ALTER TABLE import ALTER n15 TYPE CHAR(6);
 
-DELETE FROM import WHERE n10::INT < 1920 OR n13 = 'Art Competitions';
+DELETE FROM import WHERE n10 < 1920 OR n13 = 'Art Competitions';
 
 -- SELECT COUNT(*) FROM import; -> 255.080
 
