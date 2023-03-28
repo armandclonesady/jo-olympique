@@ -1,5 +1,8 @@
-user_id INT 
+/* Q3 */
+SELECT COUNT(n1)
+FROM noc;
 
-
-SELECT * FROM pg_class
-WHERE relname = 'import';
+/* Q5 */
+SELECT COUNT(n15)
+FROM import
+WHERE n15='Gold';
