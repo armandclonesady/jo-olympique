@@ -6,8 +6,8 @@ CREATE temp TABLE import (
     n7 TEXT, n8 TEXT, n9 TEXT, n10 INT, n11 TEXT, n12 TEXT,
     n13 TEXT, n14 TEXT, n15 TEXT
     );
-
-\copy import from 'athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
+    
+\copy import from 'Ressource/athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
 
 ALTER TABLE import ALTER n2 TYPE CHAR(108);
 ALTER TABLE import ALTER n3 TYPE CHAR(1);
@@ -28,7 +28,7 @@ CREATE temp TABLE noc (
     n1 TEXT, n2 TEXT, n3 TEXT
     );
 
-\copy noc from 'noc_regions_utf8.csv' with (FORMAT csv, HEADER, ENCODING 'UTF-8')
+\copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, HEADER, ENCODING 'UTF-8')
 
 /*ALTER TABLE import ALTER n16 TYPE CHAR(3);
 ALTER TABLE import ALTER n17 TYPE CHAR(32);
