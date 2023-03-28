@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS import;
+DROP TABLE IF EXISTS import CASCADE;
 DROP TABLE IF EXISTS noc;
+DROP TABLE IF EXISTS athlete CASCADE;
+DROP TABLE IF EXISTS measurement CASCADE;
 
 CREATE temp TABLE import (
     n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
@@ -33,3 +35,15 @@ CREATE temp TABLE noc (
 /*ALTER TABLE import ALTER n16 TYPE CHAR(3);
 ALTER TABLE import ALTER n17 TYPE CHAR(32);
 ALTER TABLE import ALTER n18 TYPE CHAR(27);*/
+
+
+SELECT DISTINCT n1 AS id, n2 AS name, n3 AS gender
+INTO athlete FROM import;
+
+ALTER TABLE athlete ADD CONSTRAINT pk_athele PRIMARY KEY (id);
+
+SELECT DISTINCT n1 AS id, n4 AS height, n5 AS weight, n10 AS year
+INTO measurement FROM import;
+
+ALTER TABLE measurement ADD CONSTRAINT fk_measurement FOREIGN KEY (id) 
+REFERENCES athlete(id);
