@@ -1,5 +1,17 @@
-user_id INT 
+-- QUESTION 1
+SELECT COUNT(*) AS nbcolumns
+FROM information_schema.columns
+WHERE table_name = 'import';
 
+-- QUESTION 2
+SELECT COUNT(*) AS nbrows
+FROM import;
 
-SELECT * FROM pg_class
-WHERE relname = 'import';
+-- QUESTION 4
+SELECT COUNT(DISTINCT n2) 
+FROM import;
+
+-- QUESTION 6
+SELECT *
+FROM import
+WHERE n2 LIKE 'Carl Lewis%';

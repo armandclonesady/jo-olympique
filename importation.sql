@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS import;
+DROP TABLE IF EXISTS noc;
 
 CREATE temp TABLE import (
     n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
