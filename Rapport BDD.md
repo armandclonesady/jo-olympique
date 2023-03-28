@@ -68,6 +68,7 @@ iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 
 ### Colonne de la table import 
 
+**athlete_events_utf8.csv**
 n1 = INT 
 n2 = TEXT -> CHAR(108) : SELECT MAX(LENGTH(n2)) FROM import;
 n3 = TEXT -> CHAR(1) : SELECT MAX(LENGTH(n3)) FROM import;
@@ -84,6 +85,9 @@ n13 = TEXT -> CHAR(25) : SELECT MAX(LENGTH(n13)) FROM import;
 n14 = TEXT -> CHAR(85) : SELECT MAX(LENGTH(n14)) FROM import;
 n15 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n15)) FROM import;
 
-
+**noc_regions_utf8.csv**
+n16 = TEXT -> CHAR(3) : SELECT MAX(LENGTH(n16)) FROM import;
+n17 = TEXT -> CHAR(32) : SELECT MAX(LENGTH(n17)) FROM import
+n18 = TEXT -> CHAR(27) : SELECT MAX(LENGTH(n18)) FROM import
 
 ## 

@@ -21,10 +21,14 @@ ALTER TABLE import ALTER n15 TYPE CHAR(6);
 
 DELETE FROM import WHERE n10::INT < 1920 OR n13 = 'Art Competitions';
 
-SELECT COUNT(*) FROM import;
+-- SELECT COUNT(*) FROM import; -> 255.080
 
-ALTER TABLE import ADD n16 TEXT;
-ALTER TABLE import ADD n17 TEXT;
-ALTER TABLE import ADD n18 TEXT;
+CREATE temp TABLE noc (
+    n1 TEXT, n2 TEXT, n3 TEXT
+    );
 
-\copy import (n16, n17, n18) from 'noc_regions_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
+\copy noc from 'noc_regions_utf8.csv' with (FORMAT csv, HEADER, ENCODING 'UTF-8')
+
+/*ALTER TABLE import ALTER n16 TYPE CHAR(3);
+ALTER TABLE import ALTER n17 TYPE CHAR(32);
+ALTER TABLE import ALTER n18 TYPE CHAR(27);*/
