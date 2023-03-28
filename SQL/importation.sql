@@ -42,8 +42,7 @@ INTO athlete FROM import;
 
 ALTER TABLE athlete ADD CONSTRAINT pk_athele PRIMARY KEY (id);
 
-SELECT DISTINCT n1 AS id, n4 AS height, n5 AS weight, n10 AS year
+SELECT DISTINCT n1 AS id, n5 AS height, n6 AS weight, n10 AS year
 INTO measurement FROM import;
 
-ALTER TABLE measurement ADD CONSTRAINT fk_measurement FOREIGN KEY (id) 
-REFERENCES athlete(id);
+ALTER TABLE measurement ADD CONSTRAINT fk_measurement FOREIGN KEY (id) REFERENCES athlete(id);
