@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS import;
+DROP TABLE IF EXISTS import CASCADE;
 DROP TABLE IF EXISTS noc;
+DROP TABLE IF EXISTS athlete CASCADE;
+DROP TABLE IF EXISTS measurement CASCADE;
 
 CREATE temp TABLE import (
     n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
@@ -33,3 +35,25 @@ CREATE temp TABLE noc (
 /*ALTER TABLE import ALTER n16 TYPE CHAR(3);
 ALTER TABLE import ALTER n17 TYPE CHAR(32);
 ALTER TABLE import ALTER n18 TYPE CHAR(27);*/
+
+
+SELECT DISTINCT n1 AS id, n2 AS name, n3 AS gender, n4 AS age, n7 AS team, n8 AS noc
+INTO athlete FROM import;
+
+ALTER TABLE athlete ADD CONSTRAINT pk_athele PRIMARY KEY (id);
+
+SELECT DISTINCT n1 AS id, n5 AS height, n6 AS weight, n10 AS year
+INTO measurement FROM import;
+
+ALTER TABLE measurement ADD CONSTRAINT fk_athete FOREIGN KEY (id) REFERENCES athlete(id);
+
+SELECT DISTINCT n9 AS games, n10 AS year, n11 AS season, n12 AS city
+INTO olympics FROM import;
+
+ALTER TABLE olympics ADD CONSTRAINT pk_olympics PRIMARY KEY (year, season, city);
+
+SELECT DISTINCT n14 AS wording, n13 AS sport, n15 AS medal, n1 AS id
+INTO events FROM import;
+
+ALTER TABLE events ADD CONSTRAINT pk_events PRIMARY KEY (wording);
+ALTER TABLE events ADD CONSTRAINT fk_olympics FOREIGN KEY (id) REFERENCES athlete(id);
