@@ -2,6 +2,8 @@
 title: Analyse des fichiers
 ---
 
+# Exercice 1
+
 ## Combien y-a-t-til de lignes dans chaque fichier ?
 
 ```
@@ -90,4 +92,35 @@ n16 = TEXT -> CHAR(3) : SELECT MAX(LENGTH(n16)) FROM import;
 n17 = TEXT -> CHAR(32) : SELECT MAX(LENGTH(n17)) FROM import
 n18 = TEXT -> CHAR(27) : SELECT MAX(LENGTH(n18)) FROM import
 
-## 
+# Exercice 2
+Le fichier est 
+
+
+# Exercice 3
+Toutes les requêtes sont trouvable dans le fichier "requetes.sql" en pièce 
+
+##  Combien de colonnes dans import ? (1 valeur)
+SELECT COUNT(*) AS nbcolumns
+FROM information_schema.columns
+WHERE table_name = 'import';
+
+##  Combien de lignes dans import ? (1 valeur)
+SELECT COUNT(*) AS nbrows
+FROM import;
+
+##  Combien de codes NOC dans noc ? (1 valeur)
+SELECT COUNT(n1)
+FROM noc;
+
+##  Combien d’athletes différents sont référencés dans ce fichier (1 valeur)
+SELECT COUNT(DISTINCT n2) 
+FROM import;
+
+##  Combien y-a t-il de médailles d’or dans ce fichier ?(1 valeur)
+SELECT COUNT(n15)
+FROM import
+WHERE n15='Gold';
+##  Retrouvez Carl Lewis; Combien de lignes se réfèrent à Carl Lewis ? (1 valeur)
+SELECT *
+FROM import
+WHERE n2 LIKE 'Carl Lewis%';
