@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{8274D279-D4C7-4420-9664-207F528B2ADE}" Label="" LastModificationDate="1680709966" Name="Olympics" Objects="58" Symbols="12" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" signature="LDM_DATA_MODEL_XML" version="15.0.0.2613"?>
+<?PowerDesigner AppLocale="UTF16" ID="{8274D279-D4C7-4420-9664-207F528B2ADE}" Label="" LastModificationDate="1680709867" Name="OlympicsBis" Objects="58" Symbols="12" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" signature="LDM_DATA_MODEL_XML" version="15.0.0.2613"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -8,18 +8,15 @@
 <c:Children>
 <o:Model Id="o2">
 <a:ObjectID>8274D279-D4C7-4420-9664-207F528B2ADE</a:ObjectID>
-<a:Name>Olympics</a:Name>
-<a:Code>OLYMPICS</a:Code>
+<a:Name>OlympicsBis</a:Name>
+<a:Code>OLYMPICSBIS</a:Code>
 <a:CreationDate>1680615182</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709966</a:ModificationDate>
+<a:ModificationDate>1680709867</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {A40C8D44-24C2-48F2-8391-BD9F6F4CBB2E}
 DAT 1680709867
-DLD {B7ADDDAA-05F7-43B8-956B-B0C5A11FC2FF}
-ATT NAME
-ATT DISPNAME
-ATT CODE</a:History>
+DLD {B7ADDDAA-05F7-43B8-956B-B0C5A11FC2FF}</a:History>
 <a:PackageOptionsText>[FolderOptions]
 
 [FolderOptions\Common]

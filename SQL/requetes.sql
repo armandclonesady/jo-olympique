@@ -24,3 +24,10 @@ WHERE n15='Gold';
 SELECT *
 FROM import
 WHERE n2 LIKE 'Carl Lewis%';
+
+
+-- QUESTION 7
+SELECT noc, COUNT(*) AS nbParticipation
+FROM participe AS p NATURAL JOIN resultat AS r
+GROUP BY noc
+ORDER BY nbParticipation DESC;

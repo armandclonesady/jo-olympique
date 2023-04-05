@@ -24,7 +24,7 @@ CREATE temp TABLE noc (
     n1 TEXT, n2 TEXT, n3 TEXT
     );
 
-\copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, HEADER, ENCODING 'UTF-8')
+\copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, NULL '', HEADER, ENCODING 'UTF-8')
 
 -- 
 
@@ -61,7 +61,7 @@ CREATE TABLE olympics (
     label CHAR(11),
     CONSTRAINT pk_olympics PRIMARY KEY (annee, saison, ville));
 
-INSERT INTO olympics
+INSERT INTO olympics 
     SELECT DISTINCT n10, n11, n12, n9
     FROM import ORDER BY n10;
 
@@ -78,41 +78,32 @@ INSERT INTO epreuves
 
 CREATE TABLE participe (
     id INT,
-    saison CHAR(8),
     annee INT,
+    saison CHAR(6),
     ville CHAR(22),
     noc CHAR(3),
-    equipe CHAR(47),
     age INT,
     CONSTRAINT fk_athlete FOREIGN KEY (id) REFERENCES athlete(id),
-    CONSTRAINT fk_olympics FOREIGN KEY (saison, annee, ville) REFERENCES olympics(saison, annee, ville),
+    CONSTRAINT fk_olympics FOREIGN KEY (annee, saison, ville) REFERENCES olympics(annee, saison, ville),
     CONSTRAINT fk_regions FOREIGN KEY (noc) REFERENCES regions(noc));
 
 INSERT INTO participe
-    SELECT DISTINCT n1, n11, n10, n12, n8, n7, n4 
+    SELECT DISTINCT n1, n10, n11, n12, n8, n4 
     FROM import ORDER BY n1;
 
 
 CREATE TABLE resultat (
     id INT,
     label CHAR(85),
+    annee INT,
+    saison CHAR(8),
+    ville CHAR(22),
+    equipe CHAR(47),
     medaille CHAR(6),
     CONSTRAINT fk_athlete FOREIGN KEY (id) REFERENCES athlete(id),
-    CONSTRAINT fk_epreuves FOREIGN KEY (label) REFERENCES epreuves(label));
+    CONSTRAINT fk_epreuves FOREIGN KEY (label) REFERENCES epreuves(label),
+    CONSTRAINT fk_olympics FOREIGN KEY (annee, saison, ville) REFERENCES olympics(annee, saison, ville));
 
 INSERT INTO resultat
-    SELECT DISTINCT n1, n14, n15
-    FROM import ORDER BY n1;
-
-
-CREATE TABLE contient (
-    saison CHAR(6),
-    annee INT,
-    ville CHAR(22),
-    label CHAR(85),
-    CONSTRAINT fk_olympics FOREIGN KEY (saison, annee, ville) REFERENCES olympics(saison, annee, ville),
-    CONSTRAINT fk_epreuves FOREIGN KEY (label) REFERENCES epreuves(label));
-
-INSERT INTO contient
-    SELECT DISTINCT n11, n10, n12, n14
+    SELECT DISTINCT n1, n14, n10, n11, n12, n7, n15
     FROM import ORDER BY n1;
