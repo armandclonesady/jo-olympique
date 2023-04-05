@@ -93,11 +93,39 @@ n17 = TEXT -> CHAR(32) : SELECT MAX(LENGTH(n17)) FROM import
 n18 = TEXT -> CHAR(27) : SELECT MAX(LENGTH(n18)) FROM import
 
 # Exercice 2
-Le fichier est 
+Voici la partie du script qui permet d'importer les données, elle est trouvable dans le script "importation.sql", et représente les 28 premières lignes de ce script.
+Ce script est idempotent, il produit toujours le même résultat.
+```
+DROP TABLE IF EXISTS import CASCADE;
+DROP TABLE IF EXISTS noc;
+DROP TABLE IF EXISTS athlete CASCADE;
+DROP TABLE IF EXISTS regions CASCADE;
+DROP TABLE IF EXISTS olympics CASCADE;
+DROP TABLE IF EXISTS epreuves CASCADE;
+DROP TABLE IF EXISTS participe;
+DROP TABLE IF EXISTS resultat;
+DROP TABLE IF EXISTS contient;
+
+CREATE temp TABLE import (
+    n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
+    n7 TEXT, n8 TEXT, n9 TEXT, n10 INT, n11 TEXT, n12 TEXT,
+    n13 TEXT, n14 TEXT, n15 TEXT
+    );
+    
+\copy import from 'Ressource/athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
+
+DELETE FROM import WHERE n10 < 1920 OR n13 = 'Art Competitions';
+
+-- SELECT COUNT(*) FROM import; -> 255.080
+
+CREATE temp TABLE noc (
+    n1 TEXT, n2 TEXT, n3 TEXT
+    );
+```
 
 
 # Exercice 3
-Toutes les requêtes sont trouvable dans le fichier "requetes.sql" en pièce 
+Toutes les requêtes sont trouvable dans le fichier "requetes.sql" en pièce jointe
 
 ##  Combien de colonnes dans import ? (1 valeur)
 SELECT COUNT(*) AS nbcolumns
@@ -124,3 +152,13 @@ WHERE n15='Gold';
 SELECT *
 FROM import
 WHERE n2 LIKE 'Carl Lewis%';
+
+# Exercice 4
+## MCD
+Les fichiers mcd et mld sont dans le dossier en pièce jointe, comme le reste, mais voici une image du MCD extrait directement de Olympics.mcd :  
+![Olympics MCD](image/MCD.png)
+
+## MLD
+De la même manière, voici un extrait d'Olympics.mld : 
+![Olympics MLD](image/MLD.png)
+# Exercice 5

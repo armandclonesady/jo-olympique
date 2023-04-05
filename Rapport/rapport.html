@@ -22,7 +22,9 @@
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#exercice-1">Exercice 1</a></li>
+<li><a href="#exercice-2">Exercice 2</a></li>
 <li><a href="#exercice-3">Exercice 3</a></li>
+<li><a href="#exercice-4">Exercice 4</a></li>
 </ul>
 </nav>
 <section id="exercice-1" class="level1">
@@ -80,8 +82,38 @@
 </section>
 </section>
 </section>
+<section id="exercice-2" class="level1">
+<h1>Exercice 2</h1>
+<p>Voici la partie du script qui permet d’importer les données, elle est trouvable dans le script “importation.sql”, et représente les 28 premières lignes de ce script. Ce script est idempotent, il produit toujours le même résultat.</p>
+<pre><code>DROP TABLE IF EXISTS import CASCADE;
+DROP TABLE IF EXISTS noc;
+DROP TABLE IF EXISTS athlete CASCADE;
+DROP TABLE IF EXISTS regions CASCADE;
+DROP TABLE IF EXISTS olympics CASCADE;
+DROP TABLE IF EXISTS epreuves CASCADE;
+DROP TABLE IF EXISTS participe;
+DROP TABLE IF EXISTS resultat;
+DROP TABLE IF EXISTS contient;
+
+CREATE temp TABLE import (
+    n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
+    n7 TEXT, n8 TEXT, n9 TEXT, n10 INT, n11 TEXT, n12 TEXT,
+    n13 TEXT, n14 TEXT, n15 TEXT
+    );
+    
+\copy import from &#39;Ressource/athlete_events_utf8.csv&#39; with (FORMAT csv, NULL &#39;NA&#39;, HEADER, ENCODING &#39;UTF-8&#39;)
+
+DELETE FROM import WHERE n10 &lt; 1920 OR n13 = &#39;Art Competitions&#39;;
+
+-- SELECT COUNT(*) FROM import; -&gt; 255.080
+
+CREATE temp TABLE noc (
+    n1 TEXT, n2 TEXT, n3 TEXT
+    );</code></pre>
+</section>
 <section id="exercice-3" class="level1">
 <h1>Exercice 3</h1>
+<p>Toutes les requêtes sont trouvable dans le fichier “requetes.sql” en pièce jointe</p>
 <section id="combien-de-colonnes-dans-import-1-valeur" class="level2">
 <h2>Combien de colonnes dans import ? (1 valeur)</h2>
 <p>SELECT COUNT(*) AS nbcolumns FROM information_schema.columns WHERE table_name = ‘import’;</p>
@@ -101,6 +133,18 @@
 <section id="combien-y-a-t-il-de-médailles-dor-dans-ce-fichier-1-valeur" class="level2">
 <h2>Combien y-a t-il de médailles d’or dans ce fichier ?(1 valeur)</h2>
 <p>SELECT COUNT(n15) FROM import WHERE n15=‘Gold’; ## Retrouvez Carl Lewis; Combien de lignes se réfèrent à Carl Lewis ? (1 valeur) SELECT * FROM import WHERE n2 LIKE ‘Carl Lewis%’;</p>
+</section>
+</section>
+<section id="exercice-4" class="level1">
+<h1>Exercice 4</h1>
+<section id="mcd" class="level2">
+<h2>MCD</h2>
+<p>Les fichiers mcd et mld sont dans le dossier en pièce jointe, comme le reste, mais voici une image du MCD extrait directement de Olympics.mcd :<br />
+<img src="image/MCD.png" alt="Olympics MCD" /></p>
+</section>
+<section id="mld" class="level2">
+<h2>MLD</h2>
+<p>De la même manière, voici un extrait d’Olympics.mld : <img src="image/MLD.png" alt="Olympics MLD" /> # Exercice 5</p>
 </section>
 </section>
 </body>

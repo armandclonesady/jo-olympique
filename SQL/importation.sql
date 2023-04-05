@@ -114,5 +114,5 @@ CREATE TABLE contient (
     CONSTRAINT fk_epreuves FOREIGN KEY (label) REFERENCES epreuves(label));
 
 INSERT INTO contient
-    SELECT DISTINCT n11, n10, n12, n
+    SELECT DISTINCT n11, n10, n12, n14
     FROM import ORDER BY n1;

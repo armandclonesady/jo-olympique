@@ -3,6 +3,7 @@ html {
     background-color: #1f1b24; 
     color: #FFFFFF;
     margin: 3% 7%;
+    font-size: large;
 
 }
 
@@ -25,7 +26,7 @@ ul {
 
 #TOC > ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     border-radius: 30px;
     line-height: 1.5;
@@ -54,6 +55,7 @@ blockquote {
     padding: 10px;
     margin: 10px;
 }
+
 
 section {
     display: flex;
@@ -94,11 +96,12 @@ h3 {
 pre {
     background-color: rgba(255,255,255,0.05);
     border-radius: 15px;
-    padding: 10px;
+    padding: 10px 50px 10px 10vh;
     margin: 10px;
 }
 
 img {
+    margin-top: 50px;
     border-radius: 25px;
     width: 37.5%;
     margin-left:calc(50% - 18.75%);
