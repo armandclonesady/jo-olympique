@@ -1,3 +1,4 @@
+-- EXERCICE 3
 -- QUESTION 1
 SELECT COUNT(*) AS nbcolumns
 FROM information_schema.columns
@@ -8,26 +9,40 @@ SELECT COUNT(*) AS nbrows
 FROM import;
 
 -- QUESTION 3
-SELECT COUNT(n1)
+SELECT COUNT(noc)
 FROM noc;
 
 -- QUESTION 4
-SELECT COUNT(DISTINCT n2) 
+SELECT COUNT(DISTINCT nom) 
 FROM import;
 
 -- QUESTION 5
-SELECT COUNT(n15)
+SELECT COUNT(medaille)
 FROM import
-WHERE n15='Gold';
+WHERE medaille='Gold';
 
 -- QUESTION 6
 SELECT *
 FROM import
-WHERE n2 LIKE 'Carl Lewis%';
+WHERE nom LIKE 'Carl Lewis%';
 
-
--- QUESTION 7
-SELECT noc, COUNT(*) AS nbParticipation
-FROM participe AS p NATURAL JOIN resultat AS r
-GROUP BY noc
+-- EXERCICE 5
+-- QUESTION 1
+SELECT r.regions, COUNT(*) AS nbParticipation
+FROM participe NATURAL JOIN resultat NATURAL JOIN regions AS r
+GROUP BY r.regions
 ORDER BY nbParticipation DESC;
+
+-- QUESTION 2
+SELECT rg.regions, COUNT(*) AS nbGold
+FROM participe NATURAL JOIN resultat AS rs NATURAL JOIN regions AS rg
+WHERE rs.medaille = 'Gold'
+GROUP BY rg.regions
+ORDER BY nbGold DESC;
+
+-- QUESTION 3
+SELECT rg.regions, COUNT(*) AS nbGold
+FROM participe NATURAL JOIN resultat AS rs NATURAL JOIN regions AS rg
+WHERE rs.medaille IS NOT NULL
+GROUP BY rg.regions
+ORDER BY nbGold DESC;
