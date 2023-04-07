@@ -34,14 +34,14 @@ GROUP BY r.regions
 ORDER BY nbParticipation DESC;
 
 -- QUESTION 2
-SELECT rg.regions, COUNT(*) AS nbGold
+SELECT rg.regions, COUNT(*) AS nbOr
 FROM participe NATURAL JOIN resultat AS rs NATURAL JOIN regions AS rg
 WHERE rs.medaille = 'Gold'
 GROUP BY rg.regions
 ORDER BY nbGold DESC;
 
 -- QUESTION 3
-SELECT rg.regions, COUNT(*) AS nbGold
+SELECT rg.regions, COUNT(*) AS nbMedailles
 FROM participe NATURAL JOIN resultat AS rs NATURAL JOIN regions AS rg
 WHERE rs.medaille IS NOT NULL
 GROUP BY rg.regions
