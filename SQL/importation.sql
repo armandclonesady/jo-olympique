@@ -92,9 +92,9 @@ INSERT INTO olympics
 
 \! echo "Création de la table epreuves"
 CREATE TABLE epreuves (
-    label CHAR(85),
+    elabel CHAR(85),
     sport CHAR(25),
-    CONSTRAINT pk_events PRIMARY KEY (label));
+    CONSTRAINT pk_events PRIMARY KEY (elabel));
 \! echo ""
 
 \! echo "Ajout des données dans epreuves"
@@ -125,14 +125,14 @@ INSERT INTO participe
 \! echo "Création de la table resultat"
 CREATE TABLE resultat (
     id INT,
-    label CHAR(85),
+    elabel CHAR(85),
     annee INT,
     saison CHAR(8),
     ville CHAR(22),
     equipe CHAR(47),
     medaille CHAR(6),
     CONSTRAINT fk_athlete FOREIGN KEY (id) REFERENCES athlete(id),
-    CONSTRAINT fk_epreuves FOREIGN KEY (label) REFERENCES epreuves(label),
+    CONSTRAINT fk_epreuves FOREIGN KEY (elabel) REFERENCES epreuves(elabel),
     CONSTRAINT fk_olympics FOREIGN KEY (annee, saison, ville) REFERENCES olympics(annee, saison, ville));
 \! echo ""
 
