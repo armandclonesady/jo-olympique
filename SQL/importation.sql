@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS olympics CASCADE;
 DROP TABLE IF EXISTS epreuves CASCADE;
 DROP TABLE IF EXISTS participe;
 DROP TABLE IF EXISTS resultat;
-DROP TABLE IF EXISTS contient;
 \! echo ""
 
 
@@ -30,16 +29,13 @@ DELETE FROM import WHERE annee < 1920 OR sport = 'Art Competitions';
 
 \! echo "Création de la table temporaire noc"
 CREATE temp TABLE noc (
-    noc TEXT, regions TEXT, notes TEXT
-    );
+    noc TEXT, regions TEXT, notes TEXT);
 \! echo ""
 
 
 \! echo "Import des données d'noc_regions_utf8.csv"
 \copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, NULL '', HEADER, ENCODING 'UTF-8')
 \! echo ""
-
--- 
 
 \! echo "Création de la table athlete"
 CREATE TABLE athlete (

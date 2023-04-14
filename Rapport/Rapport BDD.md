@@ -10,7 +10,7 @@ author: Armand SADY, Raphaël KIECKEN
 Voici notre rapport concernant la partie base de donnée de la SAE 2.04.
 
 
-# 
+# Exploitation des données
 
 ## Compréhension
 
@@ -69,43 +69,54 @@ Ce fichier est encodé en **us-ascii**.
 
 ### Comment envisagez-vous l'import de ces données ?
 
-- Convertir de fichier en utf-8
+- Convertir de fichier en utf-8  
 ``` bash
 iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 ```
 
-- Importer les données
+- Importer les données  
+
+**athlete_events_utf8.csv**  
+``` SQL
 \copy import from 'athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
-
-
-### Colonne de la table import 
-
-**athlete_events_utf8.csv**
-n1 = INT 
-n2 = TEXT -> CHAR(108) : SELECT MAX(LENGTH(n2)) FROM import;
-n3 = TEXT -> CHAR(1) : SELECT MAX(LENGTH(n3)) FROM import;
-n4 = INT
-n5 = INT
-n6 = FLOAT
-n7 = TEXT -> CHAR(47) : SELECT MAX(LENGTH(n7)) FROM import;
-n8 = TEXT -> CHAR(3) : SELECT MAX(LENGTH(n8)) FROM import;
-n9 = TEXT -> CHAR(11) : SELECT MAX(LENGTH(n9)) FROM import;
-n10 = INT
-n11 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n11)) FROM import; 
-n12 = TEXT -> CHAR(22) : SELECT MAX(LENGTH(n12)) FROM import;
-n13 = TEXT -> CHAR(25) : SELECT MAX(LENGTH(n13)) FROM import;
-n14 = TEXT -> CHAR(85) : SELECT MAX(LENGTH(n14)) FROM import;
-n15 = TEXT -> CHAR(6) : SELECT MAX(LENGTH(n15)) FROM import;
+```
 
 **noc_regions_utf8.csv**
-n16 = TEXT -> CHAR(3) : SELECT MAX(LENGTH(n16)) FROM import;
-n17 = TEXT -> CHAR(32) : SELECT MAX(LENGTH(n17)) FROM import
-n18 = TEXT -> CHAR(27) : SELECT MAX(LENGTH(n18)) FROM import
-
-# Exercice 2
-Voici la partie du script qui permet d'importer les données, elle est trouvable dans le script "importation.sql", et représente les 28 premières lignes de ce script.
-Ce script est idempotent, il produit toujours le même résultat.
+``` SQL
+\copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, NULL '', HEADER, ENCODING 'UTF-8')
 ```
+
+
+Stocké dans une table temporaire import ayant les colonnes suivantes :  
+``` SQL
+id INT, nom TEXT, genre TEXT, age INT, taille INT, poids INT,
+-> VARCHAR(108) : SELECT MAX(LENGTH(nom)) FROM import;
+genre = TEXT -> VARCHAR(1) : SELECT MAX(LENGTH(genre)) FROM import;
+age = INT
+taille = INT
+poids = FLOAT
+equipe = TEXT -> VARCHAR(47) : SELECT MAX(LENGTH(equipe)) FROM import;
+noc = TEXT -> VARCHAR(3) : SELECT MAX(LENGTH(noc)) FROM import;
+label = TEXT -> VARCHAR(11) : SELECT MAX(LENGTH(label)) FROM import;
+annee = INT
+saison = TEXT -> VARCHAR(6) : SELECT MAX(LENGTH(saison)) FROM import; 
+ville = TEXT -> VARCHAR(22) : SELECT MAX(LENGTH(ville)) FROM import;
+sport = TEXT -> VARCHAR(25) : SELECT MAX(LENGTH(sport)) FROM import;
+elabel = TEXT -> VARCHAR(85) : SELECT MAX(LENGTH(elabel)) FROM import;
+medaille = TEXT -> VARCHAR(6) : SELECT MAX(LENGTH(medaille)) FROM import;
+
+**noc_regions_utf8.csv**
+Stocké dans une table temporaire noc ayant les colonnes suivantes :  
+noc = TEXT -> VARCHAR(3) : SELECT MAX(LENGTH(noc)) FROM import;
+regions = TEXT -> VARCHAR(32) : SELECT MAX(LENGTH(regions)) FROM import;
+notes = TEXT
+``` 
+
+## Importer les données
+
+Voici le code SQL qui permet d'importer les données des .csv directement dans les tables temporaire, il est trouvable dans le script "importation.sql". Ce script est idempotent, il produit toujours le même résultat.  
+
+``` SQL
 DROP TABLE IF EXISTS import CASCADE;
 DROP TABLE IF EXISTS noc;
 DROP TABLE IF EXISTS athlete CASCADE;
@@ -114,61 +125,30 @@ DROP TABLE IF EXISTS olympics CASCADE;
 DROP TABLE IF EXISTS epreuves CASCADE;
 DROP TABLE IF EXISTS participe;
 DROP TABLE IF EXISTS resultat;
-DROP TABLE IF EXISTS contient;
 
 CREATE temp TABLE import (
-    n1 INT, n2 TEXT, n3 TEXT, n4 INT, n5 INT, n6 FLOAT,
-    n7 TEXT, n8 TEXT, n9 TEXT, n10 INT, n11 TEXT, n12 TEXT,
-    n13 TEXT, n14 TEXT, n15 TEXT
-    );
+    id INT, nom TEXT, genre TEXT, age INT, taille INT, poids FLOAT,
+    equipe TEXT, noc TEXT, label TEXT, annee INT, saison TEXT, 
+    ville TEXT, sport TEXT, elabel TEXT, medaille TEXT);
     
 \copy import from 'Ressource/athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
 
 DELETE FROM import WHERE n10 < 1920 OR n13 = 'Art Competitions';
 
--- SELECT COUNT(*) FROM import; -> 255.080
-
 CREATE temp TABLE noc (
-    n1 TEXT, n2 TEXT, n3 TEXT
-    );
+    noc TEXT, regions TEXT, notes TEXT);
+
+\copy noc from 'Ressource/noc_regions_utf8.csv' with (FORMAT csv, NULL '', HEADER, ENCODING 'UTF-8')
 ```
 
+## Exercice 4
+### Modèles Conceptuel de Donnée
 
-# Exercice 3
-Toutes les requêtes sont trouvable dans le fichier "requetes.sql" en pièce jointe
+![Olympics MCD](Image/MCD.png)
 
-##  Combien de colonnes dans import ? (1 valeur)
-SELECT COUNT(*) AS nbcolumns
-FROM information_schema.columns
-WHERE table_name = 'import';
+Nous avons 
 
-##  Combien de lignes dans import ? (1 valeur)
-SELECT COUNT(*) AS nbrows
-FROM import;
-
-##  Combien de codes NOC dans noc ? (1 valeur)
-SELECT COUNT(n1)
-FROM noc;
-
-##  Combien d’athletes différents sont référencés dans ce fichier (1 valeur)
-SELECT COUNT(DISTINCT n2) 
-FROM import;
-
-##  Combien y-a t-il de médailles d’or dans ce fichier ?(1 valeur)
-SELECT COUNT(n15)
-FROM import
-WHERE n15='Gold';
-##  Retrouvez Carl Lewis; Combien de lignes se réfèrent à Carl Lewis ? (1 valeur)
-SELECT *
-FROM import
-WHERE n2 LIKE 'Carl Lewis%';
-
-# Exercice 4
-## MCD
-Les fichiers mcd et mld sont dans le dossier en pièce jointe, comme le reste, mais voici une image du MCD extrait directement de Olympics.mcd :  
-![Olympics MCD](image/MCD.png)
-
-## MLD
+### Modèles Logiques de Donnée
 De la même manière, voici un extrait d'Olympics.mld : 
-![Olympics MLD](image/MLD.png)
+![Olympics MLD](Image/MLD.png)
 # Exercice 5

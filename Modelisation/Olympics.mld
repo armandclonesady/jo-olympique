@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{8274D279-D4C7-4420-9664-207F528B2ADE}" Label="" LastModificationDate="1680709966" Name="Olympics" Objects="58" Symbols="12" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" signature="LDM_DATA_MODEL_XML" version="15.0.0.2613"?>
+<?PowerDesigner AppLocale="UTF16" ID="{8274D279-D4C7-4420-9664-207F528B2ADE}" Label="" LastModificationDate="1681477599" Name="Olympics" Objects="57" Symbols="12" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" signature="LDM_DATA_MODEL_XML" version="15.0.0.2613"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -12,14 +12,10 @@
 <a:Code>OLYMPICS</a:Code>
 <a:CreationDate>1680615182</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709966</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {A40C8D44-24C2-48F2-8391-BD9F6F4CBB2E}
-DAT 1680709867
-DLD {B7ADDDAA-05F7-43B8-956B-B0C5A11FC2FF}
-ATT NAME
-ATT DISPNAME
-ATT CODE</a:History>
+DAT 1681477552</a:History>
 <a:PackageOptionsText>[FolderOptions]
 
 [FolderOptions\Common]
@@ -358,11 +354,11 @@ BuildTrgr=No</a:ModelOptionsText>
 <c:GenerationOrigins>
 <o:Shortcut Id="o3">
 <a:ObjectID>48A317CE-5C7C-4D02-9A98-8F7790CDA665</a:ObjectID>
-<a:Name>OlympicsBis</a:Name>
-<a:Code>OLYMPICSBIS</a:Code>
-<a:CreationDate>1680709867</a:CreationDate>
+<a:Name>Olympics</a:Name>
+<a:Code>OLYMPICS</a:Code>
+<a:CreationDate>1681477552</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:TargetStereotype/>
 <a:TargetID>A40C8D44-24C2-48F2-8391-BD9F6F4CBB2E</a:TargetID>
@@ -852,9 +848,9 @@ Shadow=0
 <a:PaperSource>15</a:PaperSource>
 <c:Symbols>
 <o:RelationshipSymbol Id="o5">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-32768,2333), (-16872,13462))</a:Rect>
-<a:ListOfPoints>((-18747,13462),(-18747,2920),(-32768,2920))</a:ListOfPoints>
+<a:ModificationDate>1681477587</a:ModificationDate>
+<a:Rect>((-36392,5474), (-25328,13100))</a:Rect>
+<a:ListOfPoints>((-27203,13100),(-27203,6061),(-36392,6061))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -872,9 +868,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o9">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-20473,13595), (-4396,22097))</a:Rect>
-<a:ListOfPoints>((-18598,13595),(-18598,21510),(-4396,21510))</a:ListOfPoints>
+<a:ModificationDate>1681477567</a:ModificationDate>
+<a:Rect>((-28932,13233), (-17065,21252))</a:Rect>
+<a:ListOfPoints>((-27057,13233),(-27057,20665),(-17065,20665))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -892,9 +888,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o12">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-36567,12259), (-22733,19716))</a:Rect>
-<a:ListOfPoints>((-22733,13505),(-34692,13505),(-34692,19716))</a:ListOfPoints>
+<a:ModificationDate>1681477564</a:ModificationDate>
+<a:Rect>((-36567,11897), (-31117,19716))</a:Rect>
+<a:ListOfPoints>((-31117,13143),(-34692,13143),(-34692,19716))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -912,9 +908,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o15">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-35252,-7618), (-18147,1809))</a:Rect>
-<a:ListOfPoints>((-18147,-6372),(-33640,-6372),(-33640,1809))</a:ListOfPoints>
+<a:ModificationDate>1681477587</a:ModificationDate>
+<a:Rect>((-38876,-7859), (-24428,4950))</a:Rect>
+<a:ListOfPoints>((-24428,-6613),(-37264,-6613),(-37264,4950))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -932,9 +928,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o18">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-18150,-10705), (4708,-8645))</a:Rect>
-<a:ListOfPoints>((-18150,-9078),(-8279,-9078),(-8279,-10705),(4708,-10705))</a:ListOfPoints>
+<a:ModificationDate>1681477581</a:ModificationDate>
+<a:Rect>((-26720,-3496), (-12910,4217))</a:Rect>
+<a:ListOfPoints>((-25108,-3496),(-25108,3630),(-12910,3630))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -952,9 +948,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o21">
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Rect>((-18000,-4256), (-3825,20851))</a:Rect>
-<a:ListOfPoints>((-18000,-4256),(-6225,-4256),(-6225,7621),(-3825,7621),(-3825,20851))</a:ListOfPoints>
+<a:ModificationDate>1681477599</a:ModificationDate>
+<a:Rect>((-24281,-4497), (-8600,20006))</a:Rect>
+<a:ListOfPoints>((-24281,-4497),(-10212,-4497),(-10212,7254),(-16505,7254),(-16505,20006))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4882</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -972,9 +968,9 @@ NAMA 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:EntitySymbol Id="o7">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477587</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-37785,-772), (-29263,5871))</a:Rect>
+<a:Rect>((-41409,2369), (-32887,9012))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -993,9 +989,9 @@ LABL 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o10">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477567</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-7974,17565), (626,23233))</a:Rect>
+<a:Rect>((-20579,16720), (-12135,22388))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1014,9 +1010,9 @@ LABL 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o19">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477581</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-622,-12423), (7824,-8423))</a:Rect>
+<a:Rect>((-20553,1588), (-12107,5588))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1035,7 +1031,7 @@ LABL 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o13">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
 <a:Rect>((-42027,18577), (-33273,23271))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
@@ -1056,9 +1052,9 @@ LABL 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o6">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477564</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-23049,9653), (-14449,17269))</a:Rect>
+<a:Rect>((-31427,9291), (-22983,16907))</a:Rect>
 <a:LineColor>16744576</a:LineColor>
 <a:FillColor>16765136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1077,9 +1073,9 @@ LABL 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o16">
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477570</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((-22834,-10668), (-13462,-2078))</a:Rect>
+<a:Rect>((-29115,-10909), (-19743,-2319))</a:Rect>
 <a:LineColor>16744576</a:LineColor>
 <a:FillColor>16765136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1205,10 +1201,11 @@ DAT 1680615185</a:History>
 <a:Code>OLYMPICS</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {3F55EE6A-B455-4921-88A3-43261F297A07}
-DAT 1680615185</a:History>
+DAT 1680615185
+MOV PENTCOL</a:History>
 <c:Identifiers>
 <o:Identifier Id="o35">
 <a:ObjectID>2796F8E8-4E56-4CFD-BF12-6670A8F6CCE9</a:ObjectID>
@@ -1231,26 +1228,13 @@ DAT 1680615185</a:History>
 <o:Identifier Ref="o35"/>
 </c:PrimaryIdentifier>
 <c:Attributes>
-<o:EntityAttribute Id="o39">
-<a:ObjectID>4DCC3BEE-F325-44BA-B441-A04571B6B730</a:ObjectID>
-<a:Name>label</a:Name>
-<a:Code>LABEL</a:Code>
-<a:CreationDate>1680615185</a:CreationDate>
-<a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
-<a:Modifier>iutinfo</a:Modifier>
-<a:History>ORG {5DE663A1-5D00-44FC-AB87-329D1336E036}
-DAT 1680615185</a:History>
-<a:DataType>A9</a:DataType>
-<a:Length>9</a:Length>
-</o:EntityAttribute>
 <o:EntityAttribute Id="o36">
 <a:ObjectID>248B4A3D-A41A-45B3-B220-B462F864EC71</a:ObjectID>
-<a:Name>season</a:Name>
-<a:Code>SEASON</a:Code>
+<a:Name>saison</a:Name>
+<a:Code>SAISON</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {980E5F69-DD27-433D-8AA0-7513851BD03F}
 DAT 1680615185</a:History>
@@ -1260,11 +1244,11 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o37">
 <a:ObjectID>DDE921AE-FC3A-408A-AB95-91C17FFE76AC</a:ObjectID>
-<a:Name>year</a:Name>
-<a:Code>YEAR</a:Code>
+<a:Name>annee</a:Name>
+<a:Code>ANNEE</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {22AB8F88-ED65-4DE0-908C-05E4DAE82BCB}
 DAT 1680615185</a:History>
@@ -1273,17 +1257,30 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o38">
 <a:ObjectID>4D9BE834-7F23-45BB-B146-27459CDDE9F4</a:ObjectID>
-<a:Name>city</a:Name>
-<a:Code>CITY</a:Code>
+<a:Name>ville</a:Name>
+<a:Code>VILLE</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {CEC3655F-436A-4CB9-B8A9-0CD309FAE65C}
 DAT 1680615185</a:History>
 <a:DataType>A22</a:DataType>
 <a:Length>22</a:Length>
 <a:LogicalAttribute.Mandatory>1</a:LogicalAttribute.Mandatory>
+</o:EntityAttribute>
+<o:EntityAttribute Id="o39">
+<a:ObjectID>4DCC3BEE-F325-44BA-B441-A04571B6B730</a:ObjectID>
+<a:Name>label</a:Name>
+<a:Code>LABEL</a:Code>
+<a:CreationDate>1680615185</a:CreationDate>
+<a:Creator>iutinfo</a:Creator>
+<a:ModificationDate>1681477552</a:ModificationDate>
+<a:Modifier>iutinfo</a:Modifier>
+<a:History>ORG {4D621F11-E45D-47A6-BE31-2B0447149632}
+DAT 1680615185</a:History>
+<a:DataType>A9</a:DataType>
+<a:Length>9</a:Length>
 </o:EntityAttribute>
 </c:Attributes>
 </o:Entity>
@@ -1319,11 +1316,11 @@ DAT 1680615185</a:History>
 <c:Attributes>
 <o:EntityAttribute Id="o41">
 <a:ObjectID>B44D7D76-A86B-40F1-A6D3-547688110F5F</a:ObjectID>
-<a:Name>events</a:Name>
-<a:Code>EVENTS</a:Code>
+<a:Name>elabel</a:Name>
+<a:Code>ELABEL</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680709867</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:History>ORG {5B86DEC0-6091-40D6-BB30-0CBFF40CFA75}
 DAT 1680615185</a:History>
@@ -1442,11 +1439,11 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o48">
 <a:ObjectID>E23928C2-073E-4796-B29E-C4AFA38EE397</a:ObjectID>
-<a:Name>season</a:Name>
-<a:Code>SEASON</a:Code>
+<a:Name>saison</a:Name>
+<a:Code>SAISON</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>A6</a:DataType>
 <a:Length>6</a:Length>
@@ -1454,22 +1451,22 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o49">
 <a:ObjectID>37BC34F6-89C1-4AFC-80D3-D81FA4BC6741</a:ObjectID>
-<a:Name>year</a:Name>
-<a:Code>YEAR</a:Code>
+<a:Name>annee</a:Name>
+<a:Code>ANNEE</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>I</a:DataType>
 <a:LogicalAttribute.Mandatory>1</a:LogicalAttribute.Mandatory>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o50">
 <a:ObjectID>9FF50AF7-CBDF-4E9A-8A40-45D3E0C9CE80</a:ObjectID>
-<a:Name>city</a:Name>
-<a:Code>CITY</a:Code>
+<a:Name>ville</a:Name>
+<a:Code>VILLE</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>A22</a:DataType>
 <a:Length>22</a:Length>
@@ -1525,11 +1522,11 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o54">
 <a:ObjectID>A27130BB-2C9F-4632-809A-59842CA4B6EF</a:ObjectID>
-<a:Name>events</a:Name>
-<a:Code>EVENTS</a:Code>
+<a:Name>elabel</a:Name>
+<a:Code>ELABEL</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>A85</a:DataType>
 <a:Length>85</a:Length>
@@ -1537,11 +1534,11 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o55">
 <a:ObjectID>10188B3B-E73B-4077-A29C-8F5CE276EB72</a:ObjectID>
-<a:Name>season</a:Name>
-<a:Code>SEASON</a:Code>
+<a:Name>saison</a:Name>
+<a:Code>SAISON</a:Code>
 <a:CreationDate>1680618745</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680618747</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>A6</a:DataType>
 <a:Length>6</a:Length>
@@ -1549,22 +1546,22 @@ DAT 1680615185</a:History>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o56">
 <a:ObjectID>6B518032-BEC6-479D-8E29-D582EA661201</a:ObjectID>
-<a:Name>year</a:Name>
-<a:Code>YEAR</a:Code>
+<a:Name>annee</a:Name>
+<a:Code>ANNEE</a:Code>
 <a:CreationDate>1680618745</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680618747</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>I</a:DataType>
 <a:LogicalAttribute.Mandatory>1</a:LogicalAttribute.Mandatory>
 </o:EntityAttribute>
 <o:EntityAttribute Id="o57">
 <a:ObjectID>71921B8D-9E3F-4D49-A8CE-3C9E3C75A1B5</a:ObjectID>
-<a:Name>city</a:Name>
-<a:Code>CITY</a:Code>
+<a:Name>ville</a:Name>
+<a:Code>VILLE</a:Code>
 <a:CreationDate>1680618745</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680618747</a:ModificationDate>
+<a:ModificationDate>1681477552</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
 <a:DataType>A22</a:DataType>
 <a:Length>22</a:Length>
@@ -1878,13 +1875,13 @@ DAT 1680615185</a:History>
 <c:TargetModels>
 <o:TargetModel Id="o70">
 <a:ObjectID>0041D06D-6CF1-4A3C-8F1E-E831A6E024E4</a:ObjectID>
-<a:Name>OlympicsBis</a:Name>
-<a:Code>OLYMPICSBIS</a:Code>
+<a:Name>Olympics</a:Name>
+<a:Code>OLYMPICS</a:Code>
 <a:CreationDate>1680615185</a:CreationDate>
 <a:Creator>iutinfo</a:Creator>
-<a:ModificationDate>1680615185</a:ModificationDate>
+<a:ModificationDate>1681477311</a:ModificationDate>
 <a:Modifier>iutinfo</a:Modifier>
-<a:TargetModelURL>file:///E|/S2.04/Modelisation/saebddS2.mcd</a:TargetModelURL>
+<a:TargetModelURL>file:///E|/S2.04/Modelisation/Olympics.mcd</a:TargetModelURL>
 <a:TargetModelID>A40C8D44-24C2-48F2-8391-BD9F6F4CBB2E</a:TargetModelID>
 <a:TargetModelClassID>1E597170-9350-11D1-AB3C-0020AF71E433</a:TargetModelClassID>
 <c:SessionShortcuts>
