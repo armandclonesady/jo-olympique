@@ -62,12 +62,16 @@ GROUP BY rg.regions
 ORDER BY nbMedailles DESC;
 
 -- QUESTION 6
-/*SELECT COUNT(*)
-FROM participe AS p1 JOIN participe AS p2 NATURAL JOIN 
-WHERE p1.id == p2.ID
-AND p1.*/
+SELECT COUNT(DISTINCT a.id)
+FROM participe AS parun JOIN participe AS pardeux USING (id) NATURAL JOIN athlete AS a
+WHERE parun.annee < pardeux.annee
+AND pardeux.noc = 'FRA' AND parun.noc <> pardeux.noc;
 
 -- QUESTION 7
+SELECT COUNT(DISTINCT a.id)
+FROM participe AS parun JOIN participe AS pardeux USING (id) NATURAL JOIN athlete AS a
+WHERE parun.annee < pardeux.annee
+AND parun.noc = 'FRA' AND parun.noc <> pardeux.noc;
 
 -- QUESTION 8
 SELECT p.age, COUNT(*) AS nbOr
