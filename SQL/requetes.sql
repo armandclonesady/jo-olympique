@@ -98,8 +98,9 @@ WHERE a.genre = 'F' AND o.saison = 'Summer'
 GROUP BY o.annee;
 
 -- EXERCICE 6
--- Les requêtes sont faites pour la Chine et le tennis de table:
--- Requête 
+-- Les requêtes sont faites pour la Chine et le tennis de table :
+
+-- Requête 1
 SELECT o.annee, COUNT(*) AS nELECT a.nom, COUNT(*) AS nbMedaillesOr
 FROM resultat AS r, athlete AS a
 WHERE r.id = a.id 
@@ -117,13 +118,13 @@ HAVING COUNT(*) = (SELECT COUNT(a.nom) AS nbMedaillesOr
                     ORDER BY nbMedaillesOr 
                     DESC LIMIT 1);bMedaillesFemme
 
--- Requête 
+-- Requête 2
 SELECT COUNT(DISTINCT r.id)
 FROM resultat AS r
 WHERE r.equipe = 'China'
 AND r.label LIKE 'Table Tennis%';
 
--- Requête 
+-- Requête 3
 SELECT ROUND(AVG(a.taille)::numeric, 2) AS tailleMoyenne, ROUND(AVG(a.poids)::numeric, 2) AS poidsMoyen, ROUND(AVG(p.age)::numeric, 2) AS ageMoyen
 FROM athlete AS a, resultat AS r, participe AS p
 WHERE a.id = r.id AND a.id = p.id
@@ -131,7 +132,7 @@ AND r.equipe = 'China'
 AND r.label LIKE 'Table Tennis%'
 AND a.genre = 'M';
 
--- Requête 
+-- Requête 4
 SELECT DISTINCT a.nom
 FROM resultat AS r, athlete AS a
 WHERE r.id = a.id
