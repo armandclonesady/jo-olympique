@@ -92,7 +92,11 @@ FROM olympics AS o JOIN resultat USING(annee, saison, ville) NATURAL JOIN epreuv
 GROUP BY o.label, o.ville;
 
 -- QUESTION 11
-*/
+SELECT o.annee, COUNT(*) AS nbMedaillesFemme
+FROM olympics AS o NATURAL JOIN resultat as r NATURAL JOIN athlete AS a
+WHERE a.genre = 'F' AND o.saison = 'Summer'
+GROUP BY o.annee;
+
 -- EXERCICE 6
 -- Les requêtes sont faites pour la Chine et le tennis de table:
 -- Requête 
