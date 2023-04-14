@@ -1,4 +1,4 @@
--- EXERCICE 3
+/*-- EXERCICE 3
 -- QUESTION 1
 SELECT COUNT(*) AS nbcolumns
 FROM information_schema.columns
@@ -92,10 +92,29 @@ FROM olympics AS o JOIN resultat USING(annee, saison, ville) NATURAL JOIN epreuv
 GROUP BY o.label, o.ville;
 
 -- QUESTION 11
-
+*/
 -- EXERCICE 6
+-- Les requêtes sont faites pour la Chine et le tennis de table:
 -- Requête 
 
+SELECT a.nom, COUNT(*) as nbMedaillesOr
+FROM resultat AS r, athlete AS a
+WHERE r.id = a.id 
+AND r.equipe = 'China' 
+AND r.medaille = 'Gold' 
+AND r.label LIKE 'Table Tennis%'
+GROUP BY a.nom
+HAVING COUNT(*) <= MAX((SELECT DISTINCT COUNT(*) FROM resultat AS r2 WHERE r2.equipe = 'China' AND r2.medaille = 'Gold' AND r2.label LIKE 'Table Tennis%' GROUP BY r2.id));
+
+/*
+SELECT a.nom, COUNT(*) AS nbMedaillesOr
+FROM resultat AS r, athlete AS a
+WHERE r.id = a.id 
+AND r.equipe = 'China' 
+AND r.medaille = 'Gold' 
+AND r.label LIKE 'Table Tennis%'
+GROUP BY a.nom;
+*/
 -- Requête 
 
 -- Requête 
