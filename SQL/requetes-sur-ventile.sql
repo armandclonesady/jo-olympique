@@ -1,4 +1,4 @@
--- QUESTION 1
+/*   -- QUESTION 1
 SELECT r.regions, COUNT(*) AS nbParticipation
 FROM participe NATURAL JOIN resultat NATURAL JOIN regions AS r
 GROUP BY r.regions
@@ -31,14 +31,22 @@ FROM participe NATURAL JOIN resultat AS rs NATURAL JOIN regions AS rg
 WHERE rs.ville = 'Albertville' AND rs.medaille IS NOT NULL
 GROUP BY rg.regions
 ORDER BY nbMedailles DESC;
+-- QUESTION 6, cette requête ne "compte" pas le nombre d'athlètes, mais
+-- donne le nom des 20 athlètes qui ont déjà participés sous differentes bannières
 
--- QUESTION 6
-/*SELECT COUNT(*)
-FROM participe AS p1 JOIN participe AS p2 NATURAL JOIN 
-WHERE p1.id == p2.ID
-AND p1.*/
+
+SELECT COUNT(DISTINCT a.id)
+FROM participe AS parun JOIN participe AS pardeux USING (id) NATURAL JOIN athlete AS a
+WHERE parun.annee < pardeux.annee
+AND pardeux.noc = 'FRA' AND parun.noc <> pardeux.noc;
 
 -- QUESTION 7
+
+SELECT COUNT(DISTINCT a.id)
+FROM participe AS parun JOIN participe AS pardeux USING (id) NATURAL JOIN athlete AS a
+WHERE parun.annee < pardeux.annee
+AND parun.noc = 'FRA' AND parun.noc <> pardeux.noc;
+
 
 -- QUESTION 8
 SELECT p.age, COUNT(*) AS nbOr
@@ -59,3 +67,4 @@ FROM olympics AS o JOIN resultat USING(annee, saison, ville) NATURAL JOIN epreuv
 GROUP BY o.label, o.ville;
 
 -- QUESTION 11
+*/
