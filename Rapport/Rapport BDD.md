@@ -1,66 +1,76 @@
 ---
-title: Analyse des fichiers
+title: Rapport BDD
+author: Armand SADY, Raphaël KIECKEN
 ---
 
-# Exercice 1
+![](Logo.png)
 
-## Combien y-a-t-til de lignes dans chaque fichier ?
+# Introduction 
 
-```
+Voici notre rapport concernant la partie base de donnée de la SAE 2.04.
+
+
+# 
+
+## Compréhension
+
+### Combien y-a-t-til de lignes dans chaque fichier ?
+
+``` bash
 wc -l file
 ```
 
-**athlete_events.csv** : 271 117 lignes.
-**noc_regions** : 230 lignes.
+**athlete_events.csv** : 271 117 lignes.  
+**noc_regions** : 230 lignes.  
 
-## Afficher uniquement la première ligne du fichier athlète
+### Afficher uniquement la première ligne du fichier athlète
 
-```
+``` bash
 head -1 athlete_events.csv
 ```
 
 "ID","Name","Sex","Age","Height","Weight","Team","NOC","Games","Year","Season","City","Sport","Event","Medal"
 
-## Quel est le séparateur de champs ?
+### Quel est le séparateur de champs ?
 
 Le séparateur de champs est la virgule.
 
-## Que représente une ligne ?
+### Que représente une ligne ?
 
 Une ligne représente une participation d'un athlète à une compétition.
 
-## Combien y-a-t-il de colonnes ?
+### Combien y-a-t-il de colonnes ?
 
-```
+``` bash
 head -1 athlete_events.csv |tr " " _ |tr , " " |wc -w
 ```
 
 Il y a 15 colonnes.
 
-## Quelle colonne distingue les jeux d'été et d'hivers ? 
+### Quelle colonne distingue les jeux d'été et d'hivers ? 
 
 La colonne **Season**.
 
-## Combien de lignes font référence à Jean-Claude Killy ?
+### Combien de lignes font référence à Jean-Claude Killy ?
 
-```
+``` bash
 cat athlete_events.csv |grep "Jean-Claude Killy" |wc -l
 ```
 
 Il y a 6 lignes qui font références à Jean-Claude Killy.
 
-## Quel encodage est utilisé pour ce fichier ?
+### Quel encodage est utilisé pour ce fichier ?
 
-```
+``` bash
 file -b -i  athlete_events.csv
 ```
 
 Ce fichier est encodé en **us-ascii**.
 
-## Comment envisagez-vous l'import de ces données ?
+### Comment envisagez-vous l'import de ces données ?
 
 - Convertir de fichier en utf-8
-```
+``` bash
 iconv -f us-ascii  -t utf-8 athlete_events.csv > athlete_events_utf8.csv
 ```
 

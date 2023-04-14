@@ -44,8 +44,8 @@ CREATE temp TABLE noc (
 \! echo "Création de la table athlete"
 CREATE TABLE athlete (
     id INT,
-    nom CHAR(108) NOT NULL,
-    genre CHAR(1),
+    nom VARCHAR(108) NOT NULL,
+    genre VARCHAR(1),
     taille INT,
     poids FLOAT,
     CONSTRAINT pk_athele PRIMARY KEY (id));
@@ -59,9 +59,9 @@ INSERT INTO athlete
 
 \! echo "Création de la table regions"
 CREATE TABLE regions (
-    noc CHAR(3),
-    regions CHAR(32),
-    note CHAR(27),
+    noc VARCHAR(3),
+    regions VARCHAR(32),
+    note VARCHAR(27),
     CONSTRAINT pk_region PRIMARY KEY (noc));
 \! echo ""
 
@@ -78,9 +78,9 @@ UPDATE regions SET noc = 'SGP' WHERE noc = 'SIN';
 \! echo "Création de la table olympics"
 CREATE TABLE olympics (
     annee INT,
-    saison CHAR(6),
-    ville CHAR(22),
-    label CHAR(11),
+    saison VARCHAR(6),
+    ville VARCHAR(22),
+    label VARCHAR(11),
     CONSTRAINT pk_olympics PRIMARY KEY (annee, saison, ville));
 \! echo ""
 
@@ -92,8 +92,8 @@ INSERT INTO olympics
 
 \! echo "Création de la table epreuves"
 CREATE TABLE epreuves (
-    elabel CHAR(85),
-    sport CHAR(25),
+    elabel VARCHAR(85),
+    sport VARCHAR(25),
     CONSTRAINT pk_events PRIMARY KEY (elabel));
 \! echo ""
 
@@ -107,9 +107,9 @@ INSERT INTO epreuves
 CREATE TABLE participe (
     id INT,
     annee INT,
-    saison CHAR(6),
-    ville CHAR(22),
-    noc CHAR(3),
+    saison VARCHAR(6),
+    ville VARCHAR(22),
+    noc VARCHAR(3),
     age INT,
     CONSTRAINT fk_athlete FOREIGN KEY (id) REFERENCES athlete(id),
     CONSTRAINT fk_olympics FOREIGN KEY (annee, saison, ville) REFERENCES olympics(annee, saison, ville),
@@ -125,12 +125,12 @@ INSERT INTO participe
 \! echo "Création de la table resultat"
 CREATE TABLE resultat (
     id INT,
-    elabel CHAR(85),
+    elabel VARCHAR(85),
     annee INT,
-    saison CHAR(8),
-    ville CHAR(22),
-    equipe CHAR(47),
-    medaille CHAR(6),
+    saison VARCHAR(8),
+    ville VARCHAR(22),
+    equipe VARCHAR(47),
+    medaille VARCHAR(6),
     CONSTRAINT fk_athlete FOREIGN KEY (id) REFERENCES athlete(id),
     CONSTRAINT fk_epreuves FOREIGN KEY (elabel) REFERENCES epreuves(elabel),
     CONSTRAINT fk_olympics FOREIGN KEY (annee, saison, ville) REFERENCES olympics(annee, saison, ville));
