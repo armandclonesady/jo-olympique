@@ -41,3 +41,6 @@ Salaire du cuisinier : 12 500 yuan par mois = 1 625€
 Avion aller-retour 
 - Beijing - Paris
 - 8 200€ * 11 = 90 200€
+
+ENSEMBLE SPORTIF PABLO NERUDA
+Henri Barbusse Gymnasium
