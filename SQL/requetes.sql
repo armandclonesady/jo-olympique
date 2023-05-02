@@ -1,4 +1,4 @@
-/*-- EXERCICE 3
+-- EXERCICE 3
 -- QUESTION 1
 SELECT COUNT(*) AS nbcolumns
 FROM information_schema.columns
@@ -116,7 +116,7 @@ HAVING COUNT(*) = (SELECT COUNT(a.nom) AS nbMedaillesOr
                     AND r.elabel LIKE 'Table Tennis%'
                     GROUP BY a.nom *
                     ORDER BY nbMedaillesOr 
-                    DESC LIMIT 1);bMedaillesFemme
+                    DESC LIMIT 1);
 
 -- Requête 2
 SELECT COUNT(DISTINCT r.id)

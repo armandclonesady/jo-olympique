@@ -107,7 +107,7 @@
 <section id="afficher-uniquement-la-première-ligne-du-fichier-athlète" class="level3">
 <h3>Afficher uniquement la première ligne du fichier athlète</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">head</span> -1 athlete_events.csv</span></code></pre></div>
-<p>“ID”,“Name”,“Sex”,“Age”,“Height”,“Weight”,“Team”,“NOC”,“Games”,“Year”,“Season”,“City”,“Sport”,“Event”,“Medal”</p>
+<p>“ID”,“Name”,“Sex”,“Age”,“Height”,“Weight”, “Team”,“NOC”,“Games”,“Year”,“Season”,“City”, “Sport”,“Event”,“Medal”</p>
 </section>
 <section id="quel-est-le-séparateur-de-champs" class="level3">
 <h3>Quel est le séparateur de champs ?</h3>
@@ -150,68 +150,125 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>\<span class="kw">copy</span> import <span class="kw">from</span> <span class="st">&#39;athlete_events_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;NA&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span></code></pre></div>
 <p><strong>noc_regions_utf8.csv</strong></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>\<span class="kw">copy</span> noc <span class="kw">from</span> <span class="st">&#39;Ressource/noc_regions_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span></code></pre></div>
-<p>Stocké dans une table temporaire import ayant les colonnes suivantes :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">id</span> <span class="dt">INT</span>, nom TEXT, genre TEXT, age <span class="dt">INT</span>, taille <span class="dt">INT</span>, poids <span class="dt">INT</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">108</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(nom)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>genre <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">1</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(genre)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>age <span class="op">=</span> <span class="dt">INT</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>taille <span class="op">=</span> <span class="dt">INT</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>poids <span class="op">=</span> <span class="dt">FLOAT</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>equipe <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">47</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(equipe)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>noc <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">3</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(noc)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="kw">label</span> <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">11</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(<span class="kw">label</span>)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a>annee <span class="op">=</span> <span class="dt">INT</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>saison <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">6</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(saison)) <span class="kw">FROM</span> import; </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a>ville <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">22</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(ville)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>sport <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">25</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(sport)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>elabel <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">85</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(elabel)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a>medaille <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">6</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(medaille)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="op">**</span>noc_regions_utf8.csv<span class="op">**</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a>Stocké dans une <span class="kw">table</span> temporaire noc ayant les colonnes suivantes :  </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a>noc <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">3</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(noc)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a>regions <span class="op">=</span> TEXT <span class="op">-&gt;</span> <span class="dt">VARCHAR</span>(<span class="dv">32</span>) : <span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(regions)) <span class="kw">FROM</span> import;</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a>notes <span class="op">=</span> TEXT</span></code></pre></div>
+<p>La table temporaire import possèdes les colonnes suivantes :</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">id</span> <span class="dt">INT</span>, nom TEXT, genre TEXT, age <span class="dt">INT</span>, taille <span class="dt">INT</span>, poids <span class="dt">INT</span>, genre TEXT,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>age <span class="dt">INT</span>, taille <span class="dt">INT</span>, poids <span class="dt">FLOAT</span>, equipe TEXT, noc TEXT, <span class="kw">label</span> TEXT, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>annee <span class="dt">INT</span>, saison TEXT, ville TEXT, sport TEXT, elabel TEXT, medaille TEXT;</span></code></pre></div>
+<p>La table temporaire noc possèdes les colonnVARCHAR(32) : SELECT MAX(LENGTH(regions)) FROM import;es suivantes :</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>noc TEXT, regions <span class="op">=</span> TEXT, notes <span class="op">=</span> TEXT;</span></code></pre></div>
 </section>
 </section>
 <section id="importer-les-données" class="level2">
 <h2>Importer les données</h2>
 <p>Voici le code SQL qui permet d’importer les données des .csv directement dans les tables temporaire, il est trouvable dans le script “importation.sql”. Ce script est idempotent, il produit toujours le même résultat.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> import <span class="kw">CASCADE</span>;</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> noc;</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> athlete <span class="kw">CASCADE</span>;</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> regions <span class="kw">CASCADE</span>;</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> olympics <span class="kw">CASCADE</span>;</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> epreuves <span class="kw">CASCADE</span>;</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> participe;</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> resultat;</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="kw">CREATE</span> temp <span class="kw">TABLE</span> import (</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INT</span>, nom TEXT, genre TEXT, age <span class="dt">INT</span>, taille <span class="dt">INT</span>, poids <span class="dt">FLOAT</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>    equipe TEXT, noc TEXT, <span class="kw">label</span> TEXT, annee <span class="dt">INT</span>, saison TEXT, </span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>    ville TEXT, sport TEXT, elabel TEXT, medaille TEXT);</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>    </span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>\<span class="kw">copy</span> import <span class="kw">from</span> <span class="st">&#39;Ressource/athlete_events_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;NA&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> import <span class="kw">WHERE</span> n10 <span class="op">&lt;</span> <span class="dv">1920</span> <span class="kw">OR</span> n13 <span class="op">=</span> <span class="st">&#39;Art Competitions&#39;</span>;</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a><span class="kw">CREATE</span> temp <span class="kw">TABLE</span> noc (</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>    noc TEXT, regions TEXT, notes TEXT);</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>\<span class="kw">copy</span> noc <span class="kw">from</span> <span class="st">&#39;Ressource/noc_regions_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co">-- Suppression des tables si elles existent déjà</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> import <span class="kw">CASCADE</span>;</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> noc;</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> athlete <span class="kw">CASCADE</span>;</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> regions <span class="kw">CASCADE</span>;</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> olympics <span class="kw">CASCADE</span>;</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> epreuves <span class="kw">CASCADE</span>;</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> participe;</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> resultat;</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co">-- Création de la table import</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="kw">CREATE</span> temp <span class="kw">TABLE</span> import (</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a>    <span class="kw">id</span> <span class="dt">INT</span>, nom TEXT, genre TEXT, age <span class="dt">INT</span>, taille <span class="dt">INT</span>, poids <span class="dt">FLOAT</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>    equipe TEXT, noc TEXT, <span class="kw">label</span> TEXT, annee <span class="dt">INT</span>, saison TEXT, </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>    ville TEXT, sport TEXT, elabel TEXT, medaille TEXT);</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a><span class="co">-- Importation des données dans la table import</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a>\<span class="kw">copy</span> import <span class="kw">from</span> <span class="st">&#39;Ressource/athlete_events_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;NA&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a><span class="co">-- Suppression des lignes qui ne nous intéressent pas</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> import <span class="kw">WHERE</span> n10 <span class="op">&lt;</span> <span class="dv">1920</span> <span class="kw">OR</span> n13 <span class="op">=</span> <span class="st">&#39;Art Competitions&#39;</span>;</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true"></a><span class="co">-- Création de la table noc</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true"></a><span class="kw">CREATE</span> temp <span class="kw">TABLE</span> noc (</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true"></a>    noc TEXT, regions TEXT, notes TEXT);</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true"></a><span class="co">-- Importation des données dans la table noc</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true"></a>\<span class="kw">copy</span> noc <span class="kw">from</span> <span class="st">&#39;Ressource/noc_regions_utf8.csv&#39;</span> <span class="kw">with</span> (FORMAT csv, <span class="kw">NULL</span> <span class="st">&#39;&#39;</span>, <span class="kw">HEADER</span>, ENCODING <span class="st">&#39;UTF-8&#39;</span>)</span></code></pre></div>
 </section>
-<section id="exercice-4" class="level2">
-<h2>Exercice 4</h2>
+<section id="exercice-4-ventilation-des-données" class="level2">
+<h2>Exercice 4 : Ventilation des données</h2>
 <section id="modèles-conceptuel-de-donnée" class="level3">
 <h3>Modèles Conceptuel de Donnée</h3>
+<p>Nous avons décidé de séparer les jeu de données en 4 entités : - <strong>athlete</strong> qui contient la liste de tous les athlètes ayant participé aux Jeux Olympiques. - <strong>regions</strong> qui contient la liste des différents pays et régions ayant participé. - <strong>olympics</strong> qui contient la liste des différentes éditions des JO. - <strong>epreuves</strong> qui contient la liste de toutes les épreuves ayant eu lieu.</p>
+<p>Et nous les avons reliées par les relations suivantes : - <strong>participe</strong> - <strong>resultat</strong></p>
 <figure>
 <img src="Image/MCD.png" alt="" /><figcaption>Olympics MCD</figcaption>
 </figure>
-<p>Nous avons</p>
+<p>Pour définir les valeurs à mettre dans les VARCHAR, nous avons utilisé les requêtes suivantes :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(nom)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(genre)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(equipe)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(noc)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(<span class="kw">label</span>)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(saison)) <span class="kw">FROM</span> import;   </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(ville)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(sport)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(elabel)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(medaille)) <span class="kw">FROM</span> import;</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(noc)) <span class="kw">FROM</span> noc;</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(regions)) <span class="kw">FROM</span> noc;</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(<span class="fu">LENGTH</span>(notes)) <span class="kw">FROM</span> noc;</span></code></pre></div>
 </section>
 <section id="modèles-logiques-de-donnée" class="level3">
 <h3>Modèles Logiques de Donnée</h3>
-<p>De la même manière, voici un extrait d’Olympics.mld : <img src="Image/MLD.png" alt="Olympics MLD" /> # Exercice 5</p>
+<p>Notre modèle logique de données est donc composé de 6 tables : - <strong>athlete</strong>(<u>id</u>, nom, sex, taille, poids) - <strong>regions</strong>(<u>noc</u>, regions, notes) - <strong>olympics</strong>(<u>saison</u>, <u>annee</u>, <u>ville</u>, label) - <strong>epreuves</strong>(<u>elabel</u>, sport) - <strong>participe</strong>(#id, #saison, #annee, #ville, #noc, age) - <strong>resultat</strong>(#id, #elabel, #saison, #annee, #ville, equipe, medaille)</p>
+<figure>
+<img src="Image/MLD.png" alt="" /><figcaption>Olympics MLD</figcaption>
+</figure>
+</section>
+</section>
+<section id="exercice-6-requêtes-personnalisées" class="level2">
+<h2>Exercice 6 : Requêtes personnalisées</h2>
+<p>Pays choisi : Chine Sport choisi : Tennis de table</p>
+<section id="liste-des-joueur-chinois-de-tennis-de-table-ayant-eu-le-plus-grands-nombres-de-médailles-dor" class="level3">
+<h3>Liste des joueur Chinois de Tennis de Table ayant eu le plus grands nombres de médailles d’or</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">SELECT</span> o.annee, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> nELECT a.nom, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> nbMedaillesOr</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="kw">FROM</span> resultat <span class="kw">AS</span> r, athlete <span class="kw">AS</span> a</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">WHERE</span> r.<span class="kw">id</span> <span class="op">=</span> a.<span class="kw">id</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="kw">AND</span> r.equipe <span class="op">=</span> <span class="st">&#39;China&#39;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="kw">AND</span> r.medaille <span class="op">=</span> <span class="st">&#39;Gold&#39;</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="kw">AND</span> r.elabel <span class="kw">LIKE</span> <span class="st">&#39;Table Tennis%&#39;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="kw">GROUP</span> <span class="kw">BY</span> a.nom</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">=</span> (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(a.nom) <span class="kw">AS</span> nbMedaillesOr</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>                    <span class="kw">FROM</span> resultat <span class="kw">AS</span> r, athlete <span class="kw">AS</span> a</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>                    <span class="kw">WHERE</span> r.<span class="kw">id</span> <span class="op">=</span> a.<span class="kw">id</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>                    <span class="kw">AND</span> r.equipe <span class="op">=</span> <span class="st">&#39;China&#39;</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a>                    <span class="kw">AND</span> r.medaille <span class="op">=</span> <span class="st">&#39;Gold&#39;</span> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a>                    <span class="kw">AND</span> r.elabel <span class="kw">LIKE</span> <span class="st">&#39;Table Tennis%&#39;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a>                    <span class="kw">GROUP</span> <span class="kw">BY</span> a.nom</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a>                    <span class="kw">ORDER</span> <span class="kw">BY</span> nbMedaillesOr <span class="kw">DESC</span> </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a>                    <span class="kw">LIMIT</span> <span class="dv">1</span>);</span></code></pre></div>
+</section>
+<section id="nombre-de-joueur-chinois-ayant-participé-aux-jeux-olympiques" class="level3">
+<h3>Nombre de joueur Chinois ayant participé aux Jeux Olympiques</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> r.<span class="kw">id</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">FROM</span> resultat <span class="kw">AS</span> r</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">WHERE</span> r.equipe <span class="op">=</span> <span class="st">&#39;China&#39;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">AND</span> r.<span class="kw">label</span> <span class="kw">LIKE</span> <span class="st">&#39;Table Tennis%&#39;</span>;</span></code></pre></div>
+</section>
+<section id="taille-poids-et-âge-moyen-des-joueurs-chinois-de-tennis-de-table-masculin" class="level3">
+<h3>Taille, poids et âge moyen des joueurs Chinois de Tennis de Table masculin</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="fu">ROUND</span>(<span class="fu">AVG</span>(a.taille):<span class="ch">:numeric</span>, <span class="dv">2</span>) <span class="kw">AS</span> tailleMoyenne, <span class="fu">ROUND</span>(<span class="fu">AVG</span>(a.poids):<span class="ch">:numeric</span>, <span class="dv">2</span>) <span class="kw">AS</span> poidsMoyen, <span class="fu">ROUND</span>(<span class="fu">AVG</span>(p.age):<span class="ch">:numeric</span>, <span class="dv">2</span>) <span class="kw">AS</span> ageMoyen</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">FROM</span> athlete <span class="kw">AS</span> a, resultat <span class="kw">AS</span> r, participe <span class="kw">AS</span> p</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">WHERE</span> a.<span class="kw">id</span> <span class="op">=</span> r.<span class="kw">id</span> <span class="kw">AND</span> a.<span class="kw">id</span> <span class="op">=</span> p.<span class="kw">id</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="kw">AND</span> r.equipe <span class="op">=</span> <span class="st">&#39;China&#39;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="kw">AND</span> r.<span class="kw">label</span> <span class="kw">LIKE</span> <span class="st">&#39;Table Tennis%&#39;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="kw">AND</span> a.genre <span class="op">=</span> <span class="st">&#39;M&#39;</span>;</span></code></pre></div>
+</section>
+<section id="nom-de-tout-les-joueurs-chinois-ayant-remporté-au-moins-une-médaille" class="level3">
+<h3>Nom de tout les joueurs Chinois ayant remporté au moins une médaille</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> a.nom</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">FROM</span> resultat <span class="kw">AS</span> r, athlete <span class="kw">AS</span> a</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="kw">WHERE</span> r.<span class="kw">id</span> <span class="op">=</span> a.<span class="kw">id</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="kw">AND</span> r.equipe <span class="op">=</span> <span class="st">&#39;China&#39;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">AND</span> r.<span class="kw">label</span> <span class="kw">LIKE</span> <span class="st">&#39;Table Tennis%&#39;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="kw">AND</span> r.medaille <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div>
 </section>
 </section>
 </section>
