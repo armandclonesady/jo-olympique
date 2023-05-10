@@ -1,11 +1,11 @@
 \! echo Q1
-/*SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id)
-GROUP BY id, nom, genre
+/*SELECT nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id)
+GROUP BY nom, genre
 ORDER BY nb_participation DESC
 LIMIT 20;*/
 
 \! rm Ressource/Q1.csv
-\copy (SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id) GROUP BY id, nom, genre ORDER BY nb_participation DESC LIMIT 20) to Ressource/Q1.csv with csv
+\copy (SELECT nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id) GROUP BY nom, genre ORDER BY nb_participation DESC LIMIT 20) to Ressource/Q1.csv with csv
 
 \! echo Q2-a
 /*SELECT regions, ROUND(AVG(age)) AS moyenne_age, COUNT(DISTINCT id) AS nb_sportif, MIN(age) AS min_age, MAX(age) AS max_age
@@ -18,20 +18,19 @@ GROUP BY regions;*/
 
 
 \! echo Q2-b
-/*SELECT regions, AVG(age) AS moyenne_age
-FROM participe JOIN regions USING(noc)
+/*SELECT ROUND(AVG(age)) AS moyenne_age FROM participe 
 WHERE annee = 1992 AND saison = 'Summer'
 GROUP BY regions;*/
 
 \! rm Ressource/Q2-b.csv
 \copy (SELECT regions, AVG(age) AS moyenne_age FROM participe JOIN regions USING(noc) WHERE annee = 1992 AND saison = 'Summer' GROUP BY regions) to Ressource/Q2-b.csv with csv
 
-/*SELECT regions ,AVG(age) AS moyenne_age_medaille
-FROM participe JOIN regions USING(noc) JOIN resultat USING(id)
+/*SELECT ROUND(AVG(age)) AS moyenne_age_medaille
+FROM participe JOIN resultat USING(id)
 WHERE annee = 1992 AND saison = 'Summer' AND medaille IS NOT NULL
 GROUP BY regions;*/
 
-\copy (SELECT regions ,AVG(age) AS moyenne_age_medaille FROM participe JOIN regions USING(noc) JOIN resultat USING(id) WHERE participe.annee = 1992 AND participe.saison = 'Summer' AND medaille IS NOT NULL GROUP BY regions) to Ressource/Q2-b-2.csv with csv
+\copy (SELECT regions, AVG(age) AS moyenne_age_medaille FROM participe JOIN regions USING(noc) JOIN resultat USING(id) WHERE participe.annee = 1992 AND participe.saison = 'Summer' AND medaille IS NOT NULL GROUP BY regions) to Ressource/Q2-b.csv with csv
 
 \! echo Q2-c
 \! echo les femmes
