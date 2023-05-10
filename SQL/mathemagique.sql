@@ -31,7 +31,7 @@ FROM participe JOIN regions USING(noc) JOIN resultat USING(id)
 WHERE annee = 1992 AND saison = 'Summer' AND medaille IS NOT NULL
 GROUP BY regions;*/
 
-\copy (SELECT regions ,AVG(age) AS moyenne_age_medaille FROM participe JOIN regions USING(noc) JOIN resultat USING(id) WHERE annee = 1992 AND saison = 'Summer' AND medaille IS NOT NULL GROUP BY regions) to Ressource/Q2-b-2.csv with csv
+\copy (SELECT regions ,AVG(age) AS moyenne_age_medaille FROM participe JOIN regions USING(noc) JOIN resultat USING(id) WHERE participe.annee = 1992 AND participe.saison = 'Summer' AND medaille IS NOT NULL GROUP BY regions) to Ressource/Q2-b-2.csv with csv
 
 \! echo Q2-c
 \! echo les femmes
