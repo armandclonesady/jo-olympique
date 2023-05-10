@@ -1,34 +1,41 @@
 \! echo Q1
-SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id)
+/*SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id)
 GROUP BY id, nom, genre
 ORDER BY nb_participation DESC
-LIMIT 20;
+LIMIT 20;*/
+
+\! rm Ressource/Q1.csv
+\copy (SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id) GROUP BY id, nom, genre ORDER BY nb_participation DESC LIMIT 20) to "../Ressponses/Q1.csv" with csv
 
 \! echo Q2-a
-SELECT regions, ROUND(AVG(age)) AS moyenne_age, COUNT(DISTINCT id) AS nb_sportif, MIN(age) AS min_age, MAX(age) AS max_age
-FROM import
-JOIN noc USING(noc)
+/*SELECT regions, ROUND(AVG(age)) AS moyenne_age, COUNT(DISTINCT id) AS nb_sportif, MIN(age) AS min_age, MAX(age) AS max_age
+FROM regions JOIN participe USING(noc)
 WHERE annee = 1992 AND saison = 'Summer'
-GROUP BY regions;
+GROUP BY regions;*/
 
-/*\! echo création du CSV
-\COPY (SELECT noc.n2,AVG(n4),COUNT(DISTINCT import.n1),MIN(n4),MAX(n4) FROM import JOIN noc ON n8 = noc.n1 WHERE n10 = 1956 GROUP BY noc.n2) TO 'Q2-a.csv'
+\! rm Ressource/Q2-a.csv
+\copy (SELECT regions, ROUND(AVG(age)) AS moyenne_age, COUNT(DISTINCT id) AS nb_sportif, MIN(age) AS min_age, MAX(age) AS max_age FROM regions JOIN participe USING(noc) WHERE annee = 1992 AND saison = 'Summer' GROUP BY regions) to Ressource/Q2-a.csv with csv
+
 
 \! echo Q2-b
-SELECT n8 AS pays,AVG(n4) AS moyenne_age
-FROM import
-WHERE n10 = 1956
-GROUP BY n8;
+/*SELECT regions, AVG(age) AS moyenne_age
+FROM participe JOIN regions USING(noc)
+WHERE annee = 1992 AND saison = 'Summer'
+GROUP BY regions;*/
 
-SELECT n8 AS pays,AVG(n4) AS moyenne_age_medaille
-FROM import
-WHERE n15 IS NOT NULL
-AND n10 = 1956
-GROUP BY n8;
+\! rm Ressource/Q2-b.csv
+\copy (SELECT regions, AVG(age) AS moyenne_age FROM participe JOIN regions USING(noc) WHERE annee = 1992 AND saison = 'Summer' GROUP BY regions) to Ressource/Q2-b.csv with csv
+
+/*SELECT regions ,AVG(age) AS moyenne_age_medaille
+FROM participe JOIN regions USING(noc) JOIN resultat USING(id)
+WHERE annee = 1992 AND saison = 'Summer' AND medaille IS NOT NULL
+GROUP BY regions;*/
+
+\copy (SELECT regions ,AVG(age) AS moyenne_age_medaille FROM import WHERE annee = 1992 AND saison = 'Summer' AND medaille IS NOT NULL GROUP BY regions) to Ressource/Q2-b.csv with csv
 
 \! echo Q2-c
 \! echo les femmes
-SELECT n8 AS pays,AVG(n6) AS moyenne_poid_femme
+/*SELECT n8 AS pays,AVG(n6) AS moyenne_poid_femme
 FROM import
 WHERE n3 = 'F'
 AND n10 = 1956
