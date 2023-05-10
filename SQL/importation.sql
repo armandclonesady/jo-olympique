@@ -18,7 +18,7 @@ CREATE temp TABLE import (
 
 
 \! echo "Import des données d'athlete_events_utf8.csv"
-\copy import from 'Ressource/*athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
+\copy import from 'Ressource/athlete_events_utf8.csv' with (FORMAT csv, NULL 'NA', HEADER, ENCODING 'UTF-8')
 \! echo ""
 
 
