@@ -1,5 +1,5 @@
 \! echo Q1
-SELECT id, nom, genre, COUNT(*) AS nb_participation FROM import
+SELECT id, nom, genre, COUNT(*) AS nb_participation FROM athlete JOIN participe USING (id)
 GROUP BY id, nom, genre
 ORDER BY nb_participation DESC
 LIMIT 20;
