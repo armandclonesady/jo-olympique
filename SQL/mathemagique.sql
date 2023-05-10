@@ -18,9 +18,9 @@ GROUP BY regions;*/
 
 
 \! echo Q2-b
-/*SELECT AVG(age) AS moyenne_age
-FROM participe
-WHERE annee = 1992 AND saison = 'Summer';*/
+/*SELECT ROUND(AVG(age)) AS moyenne_age FROM participe 
+WHERE annee = 1992 AND saison = 'Summer'
+GROUP BY regions;*/
 
 \! rm Ressource/Stats/Q2-b1.csv
 \copy (SELECT ROUND(AVG(age)) AS moyenne_age FROM participe WHERE annee = 1992 AND saison = 'Summer') to Ressource/Stats/Q2-b1.csv with csv
