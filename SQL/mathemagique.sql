@@ -16,7 +16,7 @@
 \! rm Ressource/Stats/Q2-b2.csv
 \copy (SELECT ROUND(AVG(age)) AS moyenne_age_medaille FROM participe AS p JOIN regions USING(noc) JOIN resultat USING(id) WHERE p.annee = 1992 AND p.saison = 'Winter' AND medaille IS NOT NULL) to Ressource/Stats/Q2-b2.csv with csv;
 
-\! echo Q2-c
+\! echo Q2-c 
 \! echo Poids des femmes
 
 \! rm Ressource/Stats/Q2-cf1.csv
@@ -33,32 +33,27 @@
 \! rm Ressource/Stats/Q2-ch2.csv
 \copy (SELECT ROUND(AVG(poids)) AS moyenne_poids_homme FROM athlete JOIN resultat USING (id) WHERE genre = 'M' AND medaille IS NOT NULL) to Ressource/Stats/Q2-ch2.csv with csv;
 
-\! echo Q3-a
+\! echo Q3-a (15 pays les plus medailles)
 
 \! rm Ressource/Stats/Q3-a.csv
 \copy (SELECT regions, COUNT(medaille) AS nbr_medaille FROM resultat JOIN participe AS p USING (id) JOIN regions USING (noc) WHERE p.annee BETWEEN 1992 AND 2016 AND medaille IS NOT NULL GROUP BY regions ORDER BY COUNT(medaille) DESC LIMIT 15) to Ressource/Stats/Q3-a.csv with csv;
 
-\! echo Q3-b1
+\! echo Q3-b1 (participants)
 
 \! rm Ressource/Stats/Q3-b1.csv
 \copy (SELECT regions, p.annee, p.saison, COUNT(DISTINCT id) AS nbr_participant FROM participe AS p JOIN regions USING (noc) WHERE p.annee BETWEEN 1992 AND 2016 AND regions IN ('China', 'South Korea', 'Australia', 'USA', 'France') GROUP BY regions, p.annee, p.saison ORDER BY regions, p.saison, p.annee) to Ressource/Stats/Q3-b1.csv with csv;
 
-\! echo Q3-b2
+\! echo Q3-b2 (medailles)
 
 \! rm Ressource/Stats/Q3-b2.csv
 \copy (SELECT regions, p.annee, p.saison, COUNT(DISTINCT id) AS nbr_medaille FROM participe AS p JOIN regions USING (noc) JOIN resultat USING (id) WHERE p.annee BETWEEN 1992 AND 2016 AND regions IN ('China', 'South Korea', 'Australia', 'USA', 'France') AND medaille IS NOT NULL GROUP BY regions, p.annee, p.saison ORDER BY regions, p.saison, p.annee) to Ressource/Stats/Q3-b2.csv with csv;
 
-\! echo Q3-b3
+\! echo Q3-b3 (femmes participantes)
 
 \! rm Ressource/Stats/Q3-b3.csv
 \copy (SELECT regions, p.annee, p.saison, COUNT(DISTINCT id) AS nbr_femme FROM athlete JOIN participe AS p USING (id) JOIN regions USING (noc) WHERE p.annee BETWEEN 1992 AND 2016 AND regions IN ('China', 'South Korea', 'Australia', 'USA', 'France') AND genre = 'F' GROUP BY regions, p.annee, p.saison ORDER BY regions, p.saison, p.annee) to Ressource/Stats/Q3-b3.csv with csv;
 
-\! echo Q3-b4
-
-\! rm Ressource/Stats/Q3-b4.csv
-\copy (SELECT regions, p.annee, p.saison, COUNT(DISTINCT id) AS nbr_homme FROM athlete JOIN participe AS p USING (id) JOIN regions USING (noc) WHERE p.annee BETWEEN 1992 AND 2016 AND regions IN ('China', 'South Korea', 'Australia', 'USA', 'France') AND genre = 'M' GROUP BY regions, p.annee, p.saison ORDER BY regions, p.saison, p.annee) to Ressource/Stats/Q3-b4.csv with csv;
-
-\! echo Q3-b5
+\! echo Q3-b5 (proportion femmes medaillees)
 
 \! rm Ressource/Stats/Q3-b5.csv
 \copy (SELECT regions, p.annee, p.saison, COUNT(DISTINCT id) AS nbr_femme_medaille FROM athlete JOIN resultat USING(id) JOIN participe AS p USING (id) JOIN regions USING (noc) WHERE p.annee BETWEEN 1992 AND 2016 AND regions IN ('China', 'South Korea', 'Australia', 'USA', 'France') AND genre = 'F' AND medaille IS NOT NULL GROUP BY regions, p.annee, p.saison ORDER BY regions, p.saison, p.annee) to Ressource/Stats/Q3-b5.csv with csv;
