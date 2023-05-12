@@ -20,7 +20,7 @@
 \! echo Poids des femmes
 
 \! rm Ressource/Stats/Q2-cf1.csv
-\copy (SELECT ROUND(AVG(poids)) AS moyenne_poids_femme FROM athlete WHERE genre = 'F') to Ressource/Stats/Q2-cf1.csv with csv;
+\copy (SELECT ROUND(AVG(poids)) AS moyenne_poids_femme FROM athlete WHERE genre = 'F' AND medaille IS NULL) to Ressource/Stats/Q2-cf1.csv with csv;
 
 \! rm Ressource/Stats/Q2-cf2.csv
 \copy (SELECT ROUND(AVG(poids)) AS moyenne_poids_femme_medaille FROM athlete JOIN resultat USING (id) WHERE genre = 'F' AND medaille IS NOT NULL) to Ressource/Stats/Q2-cf2.csv with csv;
